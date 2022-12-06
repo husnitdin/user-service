@@ -1,0 +1,16 @@
+mysql:
+  image : mysql:latest
+  ports:
+    - "3307:3306"
+  volumes:
+    - ~/db/mysql:/var/lib/mysql
+    - ./config.cnf:/etc/mysql/conf.d/config.cnf
+    - ./init-dump:/docker-entrypoint-initdb.d
+  environment:
+    TERM: xterm
+    APP_ENV: dev
+    MYSQL_USER: counter
+    MYSQL_PASSWORD: root
+    MYSQL_DATABASE: test-mysql-db
+    MYSQL_ROOT_PASSWORD: root
+  container_name: mysql
